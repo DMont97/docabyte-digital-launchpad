@@ -1,12 +1,9 @@
-
 import React from 'react';
-
 const Hero = () => {
-  return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-cyan-50/30 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+  return <section className="min-h-screen bg-gradient-to-b from-white to-cyan-50/30 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
       <div className="max-w-4xl mx-auto text-center space-y-12">
         {/* Title and Subtitle */}
-        <div className="space-y-6">
+        <div className="space-y-6 my-[50px]">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
             <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               IMPULSAMOS LA SALUD DIGITAL
@@ -32,18 +29,9 @@ const Hero = () => {
 
         {/* Spline 3D Model */}
         <div className="w-full h-96 sm:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-cyan-50 to-blue-50">
-          <iframe 
-            src='https://my.spline.design/particleaibrain-lTDRAcFyjv4fzAnGcIXtE48x/' 
-            frameBorder='0' 
-            width='100%' 
-            height='100%'
-            className="w-full h-full"
-            title="3D Brain Model"
-          />
+          <iframe src='https://my.spline.design/particleaibrain-lTDRAcFyjv4fzAnGcIXtE48x/' frameBorder='0' width='100%' height='100%' className="w-full h-full" title="3D Brain Model" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
