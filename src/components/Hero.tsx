@@ -3,7 +3,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-cyan-50/30 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
+    <section className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50/50 to-cyan-50/30 flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 pt-24 relative overflow-hidden">
       {/* Spline 3D Model as Background */}
       <div className="absolute inset-0 z-0">
         <iframe 
@@ -17,9 +17,9 @@ const Hero = () => {
       </div>
 
       {/* Content overlay */}
-      <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+      <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10 mt-8 sm:mt-12">
         {/* Title and Subtitle */}
-        <div className="space-y-6 my-[50px]">
+        <div className="space-y-6">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
             <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               IMPULSAMOS LA SALUD DIGITAL
