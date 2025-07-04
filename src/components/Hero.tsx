@@ -31,7 +31,7 @@ const Hero = () => {
           </h1>
           
           <p className="font-inter text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Creamos páginas web, apps, chatbots y automatizaciones para médicos y clínicas
+            Creamos soluciones digitales que optimizan la gestión clínica, mejoran la atención al paciente y automatizan procesos clave.
           </p>
         </div>
 
