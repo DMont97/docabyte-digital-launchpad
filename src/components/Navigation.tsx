@@ -30,16 +30,16 @@ const Navigation = () => {
           {/* Navigation links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a href="#inicio" className="text-gray-300 hover:text-orange-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
+              <a href="#inicio" className="text-gray-300 hover:text-cyan-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
                 Inicio
               </a>
-              <a href="#nosotros" className="text-gray-300 hover:text-orange-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
+              <a href="#nosotros" className="text-gray-300 hover:text-cyan-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
                 Nosotros
               </a>
-              <a href="#servicios" className="text-gray-300 hover:text-orange-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
+              <a href="#servicios" className="text-gray-300 hover:text-cyan-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
                 Servicios
               </a>
-              <a href="#proyectos" className="text-gray-300 hover:text-orange-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
+              <a href="#proyectos" className="text-gray-300 hover:text-cyan-400 px-3 py-2 text-sm font-medium transition-colors duration-200">
                 Proyectos
               </a>
             </div>
@@ -50,9 +50,9 @@ const Navigation = () => {
             <div className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-400">
               <span className="text-orange-400 font-semibold">ES</span>
               <span>|</span>
-              <span className="hover:text-orange-400 cursor-pointer transition-colors duration-200">EN</span>
+              <span className="hover:text-cyan-400 cursor-pointer transition-colors duration-200">EN</span>
             </div>
-            <button className={`bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-medium shadow-md hover:shadow-lg hover:shadow-orange-500/25 hover:scale-105 transition-all duration-300 hover:from-orange-600 hover:to-red-600 ${
+            <button className={`bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-300 hover:from-cyan-600 hover:to-blue-600 ${
               isScrolled ? 'px-4 py-1.5 text-sm' : 'px-6 py-2 text-sm'
             }`}>
               Contáctanos
@@ -61,7 +61,7 @@ const Navigation = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-gray-300 hover:text-orange-400 p-2">
+            <button className="text-gray-300 hover:text-cyan-400 p-2">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
