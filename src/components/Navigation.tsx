@@ -21,7 +21,7 @@ const Navigation = () => {
               <span className={`font-bold transition-all duration-500 ${
                 isScrolled ? 'text-xl' : 'text-2xl'
               }`}>
-                <span className="text-orange-500">&lt;B&gt;</span>
+                <span className="text-white">&lt;B&gt;</span>
                 <span className="text-white ml-1">Docabyte</span>
               </span>
             </div>
@@ -48,7 +48,7 @@ const Navigation = () => {
           {/* Right side - Language toggle and CTA */}
           <div className="flex items-center space-x-4">
             <div className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-400">
-              <span className="text-orange-400 font-semibold">ES</span>
+              <span className="text-white font-semibold">ES</span>
               <span>|</span>
               <span className="hover:text-cyan-400 cursor-pointer transition-colors duration-200">EN</span>
             </div>
