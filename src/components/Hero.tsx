@@ -18,15 +18,16 @@ const Hero = () => {
       </div>
 
       {/* Content overlay */}
-      <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10 mt-8 sm:mt-12">
+      <div className="max-w-4xl mx-auto text-center space-y-12 relative z-20 mt-8 sm:mt-12">
         {/* Title and Subtitle */}
         <div className="space-y-6">
-          <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight">
-            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent text-7xl">
+          <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight">
+            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent text-5xl sm:text-6xl lg:text-7xl block">
               IMPULSAMOS LA SALUD
             </span>
-            <br />
-            <span className="text-gray-800">CON TECNOLOGÍA</span>
+            <span className="text-gray-800 text-4xl sm:text-5xl lg:text-6xl block mt-2">
+              CON TECNOLOGÍA
+            </span>
           </h1>
           
           <p className="font-inter text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
