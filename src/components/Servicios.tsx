@@ -128,8 +128,8 @@ const Servicios = () => {
           icon={Hospital}
         />
 
-        {/* Services Cards Container */}
-        <div className="relative h-64 md:h-80">
+        {/* Services Cards Container - Increased height significantly */}
+        <div className="relative h-96 md:h-[500px] lg:h-[600px]">
           {servicios.map((servicio, index) => (
             <div
               key={index}
@@ -147,20 +147,20 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Enhanced Overlay for better contrast - especially for first card */}
+              {/* Reduced overlay opacity for better image visibility */}
               <div className={`absolute inset-0 ${
                 index === 0 
-                  ? 'bg-gradient-to-r from-gray-900/90 to-gray-800/80' 
-                  : 'bg-gradient-to-r from-gray-900/80 to-gray-900/60'
+                  ? 'bg-gradient-to-r from-gray-900/40 to-gray-800/30' 
+                  : 'bg-gradient-to-r from-gray-900/50 to-gray-900/40'
               }`} />
               
-              {/* Content */}
+              {/* Content with improved text shadow for better contrast */}
               <div className="relative h-full flex items-center">
                 <div className="w-full max-w-2xl mx-auto px-8 md:px-12 text-center md:text-left">
-                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight drop-shadow-lg">
                     {servicio.title}
                   </h3>
-                  <p className="font-inter text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl">
+                  <p className="font-inter text-lg md:text-xl text-gray-100 leading-relaxed max-w-xl drop-shadow-md">
                     {servicio.description}
                   </p>
                 </div>
