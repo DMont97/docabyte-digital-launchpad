@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Stethoscope, Clock, CalendarCheck, Activity } from 'lucide-react';
+import SectionHeader from './ui/SectionHeader';
 
 const Benefits = () => {
   const benefits = [
@@ -29,15 +29,12 @@ const Benefits = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-800 mb-6">
-            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-              Beneficios
-            </span>
-            <span className="block mt-2">para el doctor</span>
-          </h2>
-        </div>
+        {/* Updated Section Header */}
+        <SectionHeader 
+          smallTitle="BENEFICIOS MÉDICOS"
+          mainTitle="Beneficios para el doctor"
+          icon={Stethoscope}
+        />
 
         {/* Benefits Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
