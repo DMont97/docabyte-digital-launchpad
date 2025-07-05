@@ -12,7 +12,7 @@ const Navigation = () => {
         : 'bg-slate-800/95 backdrop-blur-md border-b border-slate-700 shadow-sm w-full'
     }`}>
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ${
-        isScrolled ? 'h-15' : 'h-20'
+        isScrolled ? 'h-18' : 'h-20'
       }`}>
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
