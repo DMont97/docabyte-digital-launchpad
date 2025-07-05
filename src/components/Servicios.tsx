@@ -16,7 +16,7 @@ const Servicios = () => {
     {
       title: "Páginas web médicas",
       description: "Diseñadas para mostrar tu experiencia, atraer pacientes y facilitar agendamiento.",
-      image: "https://www.freepik.es/foto-gratis/pagina-inicio-vista-pantalla-portatil_26538634.htm#fromView=search&page=1&position=3&uuid=5709e275-e1b1-43fb-9246-4d1d04c1bd43&query=medical+website"
+      image: "/lovable-uploads/a789ff6e-be97-40fe-b2bf-0cc14d0e8081.png"
     },
     {
       title: "Chatbots inteligentes", 
@@ -36,70 +36,75 @@ const Servicios = () => {
   ];
 
   useEffect(() => {
+    const section = sectionRef.current;
     const cards = cardsRef.current;
     
-    if (cards.length === 0) return;
+    if (!section || cards.length === 0) return;
 
-    // Set initial states for layered stacking
+    // Set initial states - all cards hidden except setup
     gsap.set(cards, {
       opacity: 0,
-      scale: 0.95,
-      zIndex: (index) => index + 1,
+      scale: 0.9,
+      zIndex: 1,
       willChange: 'transform, opacity'
     });
 
-    // Create layered transition animations for each card
-    cards.forEach((card, index) => {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 70%",
-        end: "bottom 30%",
-        onEnter: () => {
-          // Fade in current card with zoom effect
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            zIndex: index + 10,
-            duration: 0.8,
-            ease: "power2.out"
-          });
-        },
-        onLeave: () => {
-          // Fade out and scale down current card (moves backward)
-          gsap.to(card, {
-            opacity: 0.3,
-            scale: 0.9,
-            zIndex: index,
-            duration: 0.6,
-            ease: "power2.in"
-          });
-        },
-        onEnterBack: () => {
-          // Reverse animation when scrolling back up
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            zIndex: index + 10,
-            duration: 0.8,
-            ease: "power2.out"
-          });
-        },
-        onLeaveBack: () => {
-          // Hide card when scrolling back up past it
-          gsap.to(card, {
-            opacity: 0,
-            scale: 0.95,
-            zIndex: index,
-            duration: 0.6,
-            ease: "power2.in"
-          });
-        }
-      });
+    // Create the main scroll trigger that pins the section
+    const mainTrigger = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: () => `+=${window.innerHeight * 4}`, // 4 cards = 4x viewport height
+      pin: true,
+      scrub: 1,
+      refreshPriority: -1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const cardCount = cards.length;
+        const cardProgress = progress * cardCount;
+        
+        cards.forEach((card, index) => {
+          // Calculate when this card should be active
+          const cardStart = index;
+          const cardEnd = index + 1;
+          
+          if (cardProgress >= cardStart && cardProgress < cardEnd) {
+            // This card is currently active
+            const localProgress = cardProgress - cardStart;
+            gsap.to(card, {
+              opacity: 1,
+              scale: 1,
+              zIndex: index + 10,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          } else if (cardProgress >= cardEnd) {
+            // This card should fade out
+            gsap.to(card, {
+              opacity: 0,
+              scale: 0.85,
+              zIndex: index,
+              duration: 0.3,
+              ease: "power2.in"
+            });
+          } else {
+            // This card hasn't appeared yet
+            gsap.to(card, {
+              opacity: 0,
+              scale: 0.9,
+              zIndex: index,
+              duration: 0.3,
+              ease: "power2.in"
+            });
+          }
+        });
+      }
     });
 
     // Cleanup function
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      mainTrigger.kill();
+      ScrollTrigger.refresh();
     };
   }, []);
 
@@ -123,13 +128,13 @@ const Servicios = () => {
           icon={Hospital}
         />
 
-        {/* Services Cards with Layered Animation */}
-        <div className="relative space-y-8">
+        {/* Services Cards Container */}
+        <div className="relative h-64 md:h-80">
           {servicios.map((servicio, index) => (
             <div
               key={index}
               ref={addToRefs}
-              className="relative group h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="absolute inset-0 group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
               style={{
                 willChange: 'transform, opacity'
               }}
@@ -142,8 +147,12 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
+              {/* Enhanced Overlay for better contrast - especially for first card */}
+              <div className={`absolute inset-0 ${
+                index === 0 
+                  ? 'bg-gradient-to-r from-gray-900/90 to-gray-800/80' 
+                  : 'bg-gradient-to-r from-gray-900/80 to-gray-900/60'
+              }`} />
               
               {/* Content */}
               <div className="relative h-full flex items-center">
