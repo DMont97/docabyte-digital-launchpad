@@ -16,7 +16,7 @@ const Servicios = () => {
     {
       title: "Páginas web médicas",
       description: "Diseñadas para mostrar tu experiencia, atraer pacientes y facilitar agendamiento.",
-      image: "/lovable-uploads/a789ff6e-be97-40fe-b2bf-0cc14d0e8081.png"
+      image: "https://www.freepik.es/foto-gratis/pagina-inicio-vista-pantalla-portatil_26538634.htm#fromView=search&page=1&position=3&uuid=5709e275-e1b1-43fb-9246-4d1d04c1bd43&query=medical+website"
     },
     {
       title: "Chatbots inteligentes", 
