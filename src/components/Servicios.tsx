@@ -16,7 +16,7 @@ const Servicios = () => {
     {
       title: "Páginas web médicas",
       description: "Diseñadas para mostrar tu experiencia, atraer pacientes y facilitar agendamiento.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1200&q=80"
+      image: "/lovable-uploads/a789ff6e-be97-40fe-b2bf-0cc14d0e8081.png"
     },
     {
       title: "Chatbots inteligentes", 
@@ -40,26 +40,59 @@ const Servicios = () => {
     
     if (cards.length === 0) return;
 
-    // Set initial states
+    // Set initial states for layered stacking
     gsap.set(cards, {
       opacity: 0,
-      y: 60,
-      zIndex: 0
+      scale: 0.95,
+      zIndex: (index) => index + 1,
+      willChange: 'transform, opacity'
     });
 
-    // Create scroll-triggered animation for each card
+    // Create layered transition animations for each card
     cards.forEach((card, index) => {
-      gsap.to(card, {
-        opacity: 1,
-        y: 0,
-        zIndex: index + 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 70%",
+        end: "bottom 30%",
+        onEnter: () => {
+          // Fade in current card with zoom effect
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            zIndex: index + 10,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        },
+        onLeave: () => {
+          // Fade out and scale down current card (moves backward)
+          gsap.to(card, {
+            opacity: 0.3,
+            scale: 0.9,
+            zIndex: index,
+            duration: 0.6,
+            ease: "power2.in"
+          });
+        },
+        onEnterBack: () => {
+          // Reverse animation when scrolling back up
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            zIndex: index + 10,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        },
+        onLeaveBack: () => {
+          // Hide card when scrolling back up past it
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.95,
+            zIndex: index,
+            duration: 0.6,
+            ease: "power2.in"
+          });
         }
       });
     });
@@ -90,13 +123,16 @@ const Servicios = () => {
           icon={Hospital}
         />
 
-        {/* Services Cards */}
-        <div className="space-y-8">
+        {/* Services Cards with Layered Animation */}
+        <div className="relative space-y-8">
           {servicios.map((servicio, index) => (
             <div
               key={index}
               ref={addToRefs}
               className="relative group h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              style={{
+                willChange: 'transform, opacity'
+              }}
             >
               {/* Background Image */}
               <div 
@@ -106,7 +142,7 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Overlay */}
+              {/* Overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
               
               {/* Content */}
@@ -121,8 +157,11 @@ const Servicios = () => {
                 </div>
               </div>
 
-              {/* Hover effect border */}
+              {/* Enhanced hover effect border with depth */}
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-cyan-500/50 transition-colors duration-300" />
+              
+              {/* Subtle shadow for depth effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
             </div>
           ))}
         </div>
