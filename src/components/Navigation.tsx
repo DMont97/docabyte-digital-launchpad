@@ -1,8 +1,18 @@
+
 import React from 'react';
+import useScroll from '@/hooks/use-scroll';
+
 const Navigation = () => {
-  return <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+  const isScrolled = useScroll(50);
+
+  return (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-white/98 backdrop-blur-lg border-b border-gray-200 shadow-lg py-3' 
+        : 'bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm py-4'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between">
           {/* Logo placeholder */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -52,6 +62,8 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-    </nav>;
+    </nav>
+  );
 };
+
 export default Navigation;
