@@ -10,13 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Servicios = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   const servicios = [
     {
       title: "Páginas web médicas",
       description: "Diseñadas para mostrar tu experiencia, atraer pacientes y facilitar agendamiento.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      image: "/lovable-uploads/a789ff6e-be97-40fe-b2bf-0cc14d0e8081.png"
     },
     {
       title: "Chatbots inteligentes", 
@@ -36,65 +37,48 @@ const Servicios = () => {
   ];
 
   useEffect(() => {
+    const section = sectionRef.current;
+    const container = containerRef.current;
     const cards = cardsRef.current;
     
-    if (cards.length === 0) return;
+    if (!section || !container || cards.length === 0) return;
 
-    // Set initial states for layered stacking
+    // Clear any existing ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+    // Set initial states for all cards (hidden)
     gsap.set(cards, {
       opacity: 0,
-      scale: 0.95,
-      zIndex: (index) => index + 1,
+      scale: 0.8,
+      yPercent: 20,
       willChange: 'transform, opacity'
     });
 
-    // Create layered transition animations for each card
+    // Create pinned scroll effect
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "+=400%", // 4x viewport height for 4 cards
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        refreshPriority: 1
+      }
+    });
+
+    // Animate each card to appear at different points in the timeline
     cards.forEach((card, index) => {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 70%",
-        end: "bottom 30%",
-        onEnter: () => {
-          // Fade in current card with zoom effect
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            zIndex: index + 10,
-            duration: 0.8,
-            ease: "power2.out"
-          });
-        },
-        onLeave: () => {
-          // Fade out and scale down current card (moves backward)
-          gsap.to(card, {
-            opacity: 0.3,
-            scale: 0.9,
-            zIndex: index,
-            duration: 0.6,
-            ease: "power2.in"
-          });
-        },
-        onEnterBack: () => {
-          // Reverse animation when scrolling back up
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            zIndex: index + 10,
-            duration: 0.8,
-            ease: "power2.out"
-          });
-        },
-        onLeaveBack: () => {
-          // Hide card when scrolling back up past it
-          gsap.to(card, {
-            opacity: 0,
-            scale: 0.95,
-            zIndex: index,
-            duration: 0.6,
-            ease: "power2.in"
-          });
-        }
-      });
+      const startTime = index * 0.25; // 0, 0.25, 0.5, 0.75
+      const endTime = startTime + 0.25; // Duration of each card animation
+
+      tl.to(card, {
+        opacity: 1,
+        scale: 1,
+        yPercent: 0,
+        duration: 0.25,
+        ease: "power2.out"
+      }, startTime);
     });
 
     // Cleanup function
@@ -123,15 +107,19 @@ const Servicios = () => {
           icon={Hospital}
         />
 
-        {/* Services Cards with Layered Animation */}
-        <div className="relative space-y-8">
+        {/* Services Cards Container with Absolute Positioning */}
+        <div 
+          ref={containerRef}
+          className="relative h-96 md:h-[500px] lg:h-[600px]"
+        >
           {servicios.map((servicio, index) => (
             <div
               key={index}
               ref={addToRefs}
-              className="relative group h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="absolute inset-0 group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
               style={{
-                willChange: 'transform, opacity'
+                willChange: 'transform, opacity',
+                zIndex: servicios.length - index // Stack cards with highest index on top initially
               }}
             >
               {/* Background Image */}
@@ -142,16 +130,20 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
+              {/* Overlay for better text readability - lighter for first card */}
+              <div className={`absolute inset-0 ${
+                index === 0 
+                  ? 'bg-gradient-to-r from-gray-900/40 to-gray-800/30' 
+                  : 'bg-gradient-to-r from-gray-900/50 to-gray-900/40'
+              }`} />
               
               {/* Content */}
               <div className="relative h-full flex items-center">
                 <div className="w-full max-w-2xl mx-auto px-8 md:px-12 text-center md:text-left">
-                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight drop-shadow-lg">
                     {servicio.title}
                   </h3>
-                  <p className="font-inter text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl">
+                  <p className="font-inter text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl drop-shadow-md">
                     {servicio.description}
                   </p>
                 </div>
