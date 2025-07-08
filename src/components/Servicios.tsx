@@ -45,23 +45,21 @@ const Servicios = () => {
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-    // Set initial states - all cards start from bottom
+    // Set initial states
     cards.forEach((card, index) => {
-      const stackOffset = index * 20; // 20px gap between cards
-      
       if (index === 0) {
         // First card starts in its final position
         gsap.set(card, {
           y: 0,
           opacity: 1,
-          zIndex: servicios.length - index
+          zIndex: 1
         });
       } else {
-        // Other cards start from bottom, hidden
+        // Other cards start from bottom, off-screen
         gsap.set(card, {
           y: window.innerHeight,
-          opacity: 0,
-          zIndex: servicios.length - index
+          opacity: 1,
+          zIndex: index + 1
         });
       }
     });
@@ -79,16 +77,14 @@ const Servicios = () => {
       }
     });
 
-    // Animate each card sliding up to its stacked position
+    // Animate each card sliding up to its final position
     cards.forEach((card, index) => {
       if (index === 0) return; // Skip first card as it's already positioned
       
-      const stackOffset = -index * 20; // Negative to stack upward
       const animationStart = (index - 1) * 0.3; // Stagger animations
       
       mainTL.to(card, {
-        y: stackOffset,
-        opacity: 1,
+        y: 0,
         duration: 0.4,
         ease: "power2.out"
       }, animationStart);
@@ -123,14 +119,15 @@ const Servicios = () => {
         {/* Services Cards Container */}
         <div 
           ref={containerRef}
-          className="relative h-96 md:h-[500px] lg:h-[600px] mx-auto max-w-4xl"
+          className="relative h-[400px] md:h-[500px] lg:h-[600px] mx-auto max-w-4xl"
         >
           {servicios.map((servicio, index) => (
             <div
               key={index}
               ref={addToRefs}
-              className="absolute inset-0 group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="absolute left-0 right-0 h-full group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
               style={{
+                bottom: `${index * 20}px`,
                 willChange: 'transform, opacity'
               }}
             >
@@ -142,12 +139,8 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Light overlay for better text readability */}
-              <div className={`absolute inset-0 ${
-                index === 0 
-                  ? 'bg-gradient-to-r from-gray-900/15 to-gray-800/10' 
-                  : 'bg-gradient-to-r from-gray-900/25 to-gray-900/15'
-              }`} />
+              {/* Consistent solid overlay */}
+              <div className="absolute inset-0 bg-gray-900/30" />
               
               {/* Content */}
               <div className="relative h-full flex items-center">
