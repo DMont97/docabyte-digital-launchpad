@@ -16,7 +16,7 @@ const Servicios = () => {
     {
       title: "Páginas web médicas",
       description: "Diseñadas para mostrar tu experiencia, atraer pacientes y facilitar agendamiento.",
-      image: "/lovable-uploads/a789ff6e-be97-40fe-b2bf-0cc14d0e8081.png"
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       title: "Chatbots inteligentes", 
@@ -36,75 +36,70 @@ const Servicios = () => {
   ];
 
   useEffect(() => {
-    const section = sectionRef.current;
     const cards = cardsRef.current;
     
-    if (!section || cards.length === 0) return;
+    if (cards.length === 0) return;
 
-    // Set initial states - all cards hidden except setup
+    // Set initial states for layered stacking
     gsap.set(cards, {
       opacity: 0,
-      scale: 0.9,
-      zIndex: 1,
+      scale: 0.95,
+      zIndex: (index) => index + 1,
       willChange: 'transform, opacity'
     });
 
-    // Create the main scroll trigger that pins the section
-    const mainTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: () => `+=${window.innerHeight * 4}`, // 4 cards = 4x viewport height
-      pin: true,
-      scrub: 1,
-      refreshPriority: -1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const cardCount = cards.length;
-        const cardProgress = progress * cardCount;
-        
-        cards.forEach((card, index) => {
-          // Calculate when this card should be active
-          const cardStart = index;
-          const cardEnd = index + 1;
-          
-          if (cardProgress >= cardStart && cardProgress < cardEnd) {
-            // This card is currently active
-            const localProgress = cardProgress - cardStart;
-            gsap.to(card, {
-              opacity: 1,
-              scale: 1,
-              zIndex: index + 10,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          } else if (cardProgress >= cardEnd) {
-            // This card should fade out
-            gsap.to(card, {
-              opacity: 0,
-              scale: 0.85,
-              zIndex: index,
-              duration: 0.3,
-              ease: "power2.in"
-            });
-          } else {
-            // This card hasn't appeared yet
-            gsap.to(card, {
-              opacity: 0,
-              scale: 0.9,
-              zIndex: index,
-              duration: 0.3,
-              ease: "power2.in"
-            });
-          }
-        });
-      }
+    // Create layered transition animations for each card
+    cards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 70%",
+        end: "bottom 30%",
+        onEnter: () => {
+          // Fade in current card with zoom effect
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            zIndex: index + 10,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        },
+        onLeave: () => {
+          // Fade out and scale down current card (moves backward)
+          gsap.to(card, {
+            opacity: 0.3,
+            scale: 0.9,
+            zIndex: index,
+            duration: 0.6,
+            ease: "power2.in"
+          });
+        },
+        onEnterBack: () => {
+          // Reverse animation when scrolling back up
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            zIndex: index + 10,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        },
+        onLeaveBack: () => {
+          // Hide card when scrolling back up past it
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.95,
+            zIndex: index,
+            duration: 0.6,
+            ease: "power2.in"
+          });
+        }
+      });
     });
 
     // Cleanup function
     return () => {
-      mainTrigger.kill();
-      ScrollTrigger.refresh();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -128,13 +123,13 @@ const Servicios = () => {
           icon={Hospital}
         />
 
-        {/* Services Cards Container - Increased height significantly */}
-        <div className="relative h-96 md:h-[500px] lg:h-[600px]">
+        {/* Services Cards with Layered Animation */}
+        <div className="relative space-y-8">
           {servicios.map((servicio, index) => (
             <div
               key={index}
               ref={addToRefs}
-              className="absolute inset-0 group rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="relative group h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
               style={{
                 willChange: 'transform, opacity'
               }}
@@ -147,20 +142,16 @@ const Servicios = () => {
                 }}
               />
               
-              {/* Reduced overlay opacity for better image visibility */}
-              <div className={`absolute inset-0 ${
-                index === 0 
-                  ? 'bg-gradient-to-r from-gray-900/40 to-gray-800/30' 
-                  : 'bg-gradient-to-r from-gray-900/50 to-gray-900/40'
-              }`} />
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
               
-              {/* Content with improved text shadow for better contrast */}
+              {/* Content */}
               <div className="relative h-full flex items-center">
                 <div className="w-full max-w-2xl mx-auto px-8 md:px-12 text-center md:text-left">
-                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight drop-shadow-lg">
+                  <h3 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
                     {servicio.title}
                   </h3>
-                  <p className="font-inter text-lg md:text-xl text-gray-100 leading-relaxed max-w-xl drop-shadow-md">
+                  <p className="font-inter text-lg md:text-xl text-gray-200 leading-relaxed max-w-xl">
                     {servicio.description}
                   </p>
                 </div>
