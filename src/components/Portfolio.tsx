@@ -21,7 +21,7 @@ const Portfolio = () => {
     {
       id: '1',
       name: 'Vitalis',
-      type: 'Clínica de atención médica',
+      type: 'Sitio web profesional con chatbot integrado',
       description: 'Plataforma web integral para gestión de citas, historiales médicos y comunicación paciente-doctor. Incluye sistema de recordatorios automáticos y portal del paciente.',
       technologies: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
       gradient: 'from-blue-500 to-cyan-500'
