@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Benefits from '@/components/Benefits';
 import Servicios from '@/components/Servicios';
+import Portfolio from '@/components/Portfolio';
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <Benefits />
       <Servicios />
       <WhyChooseUs />
+      <Portfolio />
     </div>
   );
 };
