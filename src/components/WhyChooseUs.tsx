@@ -3,6 +3,7 @@ import { Heart, Laptop, BadgeCheck, Users } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import docabyteHeroImage from '@/assets/docabyte-hero-image.jpg';
+import SectionHeader from '@/components/ui/SectionHeader';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -73,24 +74,18 @@ const WhyChooseUs = () => {
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <SectionHeader 
+          smallTitle="¿POR QUÉ ELEGIRNOS?"
+          mainTitle="Lo que hace a Docabyte tu compañero tecnológico ideal"
+          icon={Heart}
+        />
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Content Column */}
           <div ref={contentRef} className="space-y-8">
-            {/* Main Title */}
-            <div className="space-y-4">
-              <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-800 leading-tight">
-                Lo que hace a{' '}
-                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  Docabyte
-                </span>{' '}
-                tu compañero tecnológico ideal
-              </h2>
-              <p className="font-inter text-lg text-gray-600 leading-relaxed max-w-lg">
-                Combinamos experiencia médica con innovación tecnológica para crear soluciones que realmente entienden tu práctica profesional.
-              </p>
-            </div>
-
             {/* Key Points */}
             <div className="space-y-6">
               {keyPoints.map((point, index) => {
