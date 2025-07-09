@@ -22,24 +22,24 @@ const Portfolio = () => {
       id: '1',
       name: 'Vitalis',
       type: 'Sitio web profesional con chatbot integrado',
-      description: 'Plataforma web integral para una clínica médica con múltiples especialidades, que incluye un chatbot con inteligencia artificial que automatiza el agendamiento de citas, ofrece información de precios y responde dudas frecuentes de forma inmediata.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Integración de IA'],
+      description: 'Plataforma web integral para gestión de citas, historiales médicos y comunicación paciente-doctor. Incluye sistema de recordatorios automáticos y portal del paciente.',
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
       id: '2',
       name: 'MediApp',
       type: 'Panel de control médico',
-      description: 'Dashboard administrativo para monitoreo de pacientes, doctores, con funciones potenciadas por inteligencia artificial para agendar citas, administrar consultas y hacer análisis en tiempo real.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js', 'Integración de IA'],
+      description: 'Dashboard administrativo para monitoreo de pacientes, gestión de inventario médico y análisis de datos clínicos con reportes en tiempo real.',
+      technologies: ['React', 'TypeScript', 'MongoDB', 'Chart.js'],
       gradient: 'from-green-500 to-emerald-500'
     },
     {
       id: '3',
       name: 'Endoscopy Morelia',
-      type: 'Empresa de venta de equipo médico',
-      description: 'Sitio web especializado para la venta de equipo médico, con catalogo de equipos, testimonios y un sistema efectivo para solicitar cotizaciones.',
-      technologies: ['React', 'TypeScript', 'Integración con Whatsapp'],
+      type: 'Clínica de atención médica',
+      description: 'Sitio web especializado para clínica de endoscopia con sistema de agendamiento en línea, galería de procedimientos y información educativa para pacientes.',
+      technologies: ['React', 'Supabase', 'Stripe', 'GSAP'],
       gradient: 'from-purple-500 to-pink-500'
     },
     {
@@ -47,7 +47,7 @@ const Portfolio = () => {
       name: 'Dentista',
       type: 'Clínica dental',
       description: 'Plataforma completa para clínica dental que incluye gestión de tratamientos, seguimiento de ortodoncias y sistema de fotografías clínicas.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Integración de IA'],
+      technologies: ['Vue.js', 'Laravel', 'MySQL', 'Bootstrap'],
       gradient: 'from-orange-500 to-red-500'
     },
     {
@@ -55,15 +55,15 @@ const Portfolio = () => {
       name: 'Dra. Alma Monroy',
       type: 'Consultorio privado',
       description: 'Sitio web profesional con sistema de citas en línea, blog médico y área privada para comunicación con pacientes. Diseño elegante y funcional.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Integración de IA'],
+      technologies: ['React', 'Firebase', 'Tailwind CSS', 'Framer Motion'],
       gradient: 'from-indigo-500 to-blue-500'
     },
     {
       id: '6',
       name: 'Dra. Daniela Ramírez',
-      type: 'Dashboard administrativo',
-      description: 'Sitio web profesional con sistema de citas en línea y área privada para comunicación con pacientes. Diseño elegante y funcional.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Integración de IA'],
+      type: 'Consultorio privado',
+      description: 'Sistema de gestión integral para consultorio médico con análisis de métricas, control de inventario y seguimiento de tratamientos especializados.',
+      technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Recharts'],
       gradient: 'from-teal-500 to-cyan-500'
     }
   ];
