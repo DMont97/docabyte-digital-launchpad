@@ -4,6 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import PortfolioScrollDemo from '@/components/ui/portfolio-scroll-demo';
 
 interface Project {
   id: string;
@@ -71,17 +72,14 @@ const Portfolio = () => {
   console.log('Portfolio component rendering with', projects.length, 'projects');
 
   return (
-    <section className="py-20 lg:py-28 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <SectionHeader 
-          smallTitle="NUESTRO TRABAJO"
-          mainTitle="Proyectos que hemos desarrollado"
-          icon={Laptop}
-        />
-        
-        {/* Portfolio Grid */}
+    <>
+      {/* Animated Portfolio Hero */}
+      <PortfolioScrollDemo />
+      
+      <section className="py-20 lg:py-28 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <div key={project.id} className="group">
@@ -170,6 +168,7 @@ const Portfolio = () => {
         
       </div>
     </section>
+    </>
   );
 };
 
