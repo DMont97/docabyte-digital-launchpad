@@ -55,15 +55,15 @@ const Portfolio = () => {
       name: 'Dra. Alma Monroy',
       type: 'Consultorio privado',
       description: 'Sitio web profesional con sistema de citas en línea, blog médico y área privada para comunicación con pacientes. Diseño elegante y funcional.',
-      technologies: ['React', 'Firebase', 'Tailwind CSS', 'Framer Motion'],
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chatbot con IA'],
       gradient: 'from-indigo-500 to-blue-500'
     },
     {
       id: '6',
       name: 'Dra. Daniela Ramírez',
-      type: 'Dashboard administrativo',
-      description: 'Sistema de gestión integral para consultorio médico con análisis de métricas, control de inventario y seguimiento de tratamientos especializados.',
-      technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Recharts'],
+      type: 'Sitio web profesional con chatbot',
+      description: 'Página web para consultorio odontológico enfocada en mostrar los servicios de la doctora, facilitar la solicitud de citas de forma intuitiva y automatizar respuestas frecuentes mediante un chatbot integrado que mejora la experiencia de los pacientes.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chatbot con IA'],
       gradient: 'from-teal-500 to-cyan-500'
     }
   ];
