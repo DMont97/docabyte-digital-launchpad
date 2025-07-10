@@ -5,6 +5,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import Benefits from '@/components/Benefits';
 import Servicios from '@/components/Servicios';
 import Portfolio from '@/components/Portfolio';
+import Testimonials from '@/components/Testimonials';
 import CTA from '@/components/CTA';
 
 const Index = () => {
@@ -16,6 +17,7 @@ const Index = () => {
       <Servicios />
       <WhyChooseUs />
       <Portfolio />
+      <Testimonials />
       <CTA />
     </div>
   );
