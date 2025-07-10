@@ -80,44 +80,57 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Portfolio Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {projects.map((project, index) => {
-            // Define grid positioning for bento layout
+            // Define grid positioning for specific bento layout from reference
             const getGridClass = (index: number) => {
               switch(index) {
-                case 0: // Vitalis - Large featured
-                  return "md:col-span-2 lg:col-span-3 md:row-span-2";
-                case 1: // MediApp - Medium  
-                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
-                case 2: // Endoscopy - Small
-                  return "md:col-span-2 lg:col-span-1 md:row-span-1";
-                case 3: // Dentista - Medium tall
-                  return "md:col-span-2 lg:col-span-2 md:row-span-2";
-                case 4: // Dra. Alma - Small
-                  return "md:col-span-2 lg:col-span-1 md:row-span-1";
-                case 5: // Dra. Daniela - Medium
-                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
+                case 0: // Vitalis - Top left large
+                  return "lg:col-span-2 lg:row-span-1";
+                case 1: // MediApp - Middle right large  
+                  return "lg:col-span-2 lg:row-span-1";
+                case 2: // Endoscopy - Top right medium
+                  return "lg:col-span-1 lg:row-span-1";
+                case 3: // Dentista - Bottom left large
+                  return "lg:col-span-2 lg:row-span-1";
+                case 4: // Dra. Alma - Bottom right medium
+                  return "lg:col-span-1 lg:row-span-1";
+                case 5: // Dra. Daniela - Middle left small
+                  return "lg:col-span-1 lg:row-span-1";
                 default:
-                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
+                  return "lg:col-span-1 lg:row-span-1";
               }
             };
 
             const getHeightClass = (index: number) => {
               switch(index) {
-                case 0: // Vitalis - Large featured
-                  return "h-80 md:h-96 lg:h-[32rem]";
-                case 1: // MediApp - Medium
-                  return "h-80 md:h-48 lg:h-60";
-                case 2: // Endoscopy - Small
-                  return "h-80 md:h-48 lg:h-60";
-                case 3: // Dentista - Medium tall
-                  return "h-80 md:h-96 lg:h-[32rem]";
-                case 4: // Dra. Alma - Small
-                  return "h-80 md:h-48 lg:h-60";
-                case 5: // Dra. Daniela - Medium
-                  return "h-80 md:h-48 lg:h-60";
+                case 0: // Vitalis - Large
+                  return "h-64 lg:h-48";
+                case 1: // MediApp - Large
+                  return "h-64 lg:h-48";
+                case 2: // Endoscopy - Medium
+                  return "h-64 lg:h-48";
+                case 3: // Dentista - Large
+                  return "h-64 lg:h-48";
+                case 4: // Dra. Alma - Medium
+                  return "h-64 lg:h-48";
+                case 5: // Dra. Daniela - Small
+                  return "h-64 lg:h-48";
                 default:
-                  return "h-80";
+                  return "h-64";
+              }
+            };
+
+            const getOrder = (index: number) => {
+              // Reorder projects to match the reference layout
+              switch(index) {
+                case 0: return "order-1"; // Vitalis - Top left
+                case 2: return "order-2"; // Endoscopy - Top right
+                case 5: return "order-3"; // Dra. Daniela - Middle left
+                case 1: return "order-4"; // MediApp - Middle right
+                case 3: return "order-5"; // Dentista - Bottom left
+                case 4: return "order-6"; // Dra. Alma - Bottom right
+                default: return "";
               }
             };
 
@@ -133,7 +146,7 @@ const Portfolio = () => {
             const textStyles = getTextSize(index);
 
             return (
-              <div key={project.id} className={`group ${getGridClass(index)}`}>
+              <div key={project.id} className={`group ${getGridClass(index)} ${getOrder(index)}`}>
                 <Dialog>
                   <DialogTrigger asChild>
                     <div 
