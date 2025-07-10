@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Laptop } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,7 @@ interface Project {
   description: string;
   technologies: string[];
   gradient: string;
+  image: string;
 }
 
 const Portfolio = () => {
@@ -25,7 +25,8 @@ const Portfolio = () => {
       type: 'Sitio web profesional con chatbot integrado',
       description: 'Plataforma web integral para gestión de citas, historiales médicos y comunicación paciente-doctor. Incluye sistema de recordatorios automáticos y portal del paciente.',
       technologies: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop'
     },
     {
       id: '2',
@@ -33,7 +34,8 @@ const Portfolio = () => {
       type: 'Panel de control médico',
       description: 'Dashboard administrativo para monitoreo de pacientes, gestión de inventario médico y análisis de datos clínicos con reportes en tiempo real.',
       technologies: ['React', 'TypeScript', 'MongoDB', 'Chart.js'],
-      gradient: 'from-green-500 to-emerald-500'
+      gradient: 'from-green-500 to-emerald-500',
+      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop'
     },
     {
       id: '3',
@@ -41,7 +43,8 @@ const Portfolio = () => {
       type: 'Clínica de atención médica',
       description: 'Sitio web especializado para clínica de endoscopia con sistema de agendamiento en línea, galería de procedimientos y información educativa para pacientes.',
       technologies: ['React', 'Supabase', 'Stripe', 'GSAP'],
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&h=400&fit=crop'
     },
     {
       id: '4',
@@ -49,7 +52,8 @@ const Portfolio = () => {
       type: 'Clínica dental',
       description: 'Plataforma completa para clínica dental que incluye gestión de tratamientos, seguimiento de ortodoncias y sistema de fotografías clínicas.',
       technologies: ['Vue.js', 'Laravel', 'MySQL', 'Bootstrap'],
-      gradient: 'from-orange-500 to-red-500'
+      gradient: 'from-orange-500 to-red-500',
+      image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&h=400&fit=crop'
     },
     {
       id: '5',
@@ -57,7 +61,8 @@ const Portfolio = () => {
       type: 'Consultorio privado',
       description: 'Sitio web profesional con sistema de citas en línea, blog médico y área privada para comunicación con pacientes. Diseño elegante y funcional.',
       technologies: ['React', 'Firebase', 'Tailwind CSS', 'Framer Motion'],
-      gradient: 'from-indigo-500 to-blue-500'
+      gradient: 'from-indigo-500 to-blue-500',
+      image: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=400&fit=crop'
     },
     {
       id: '6',
@@ -65,11 +70,24 @@ const Portfolio = () => {
       type: 'Consultorio privado',
       description: 'Sistema de gestión integral para consultorio médico con análisis de métricas, control de inventario y seguimiento de tratamientos especializados.',
       technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Recharts'],
-      gradient: 'from-teal-500 to-cyan-500'
+      gradient: 'from-teal-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&h=400&fit=crop'
     }
   ];
 
-  console.log('Portfolio component rendering with', projects.length, 'projects');
+  const getAnimationClass = (index: number) => {
+    const isEven = index % 2 === 0;
+    const animationDirection = isEven ? 'slide-in-left' : 'slide-in-right';
+    const delayMap = {
+      0: '',
+      1: '-delay-200',
+      2: '-delay-400', 
+      3: '-delay-600',
+      4: '-delay-800',
+      5: '-delay-1000'
+    };
+    return `animate-${animationDirection}${delayMap[index as keyof typeof delayMap]}`;
+  };
 
   return (
     <>
@@ -79,180 +97,158 @@ const Portfolio = () => {
       <section className="py-20 lg:py-28 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Portfolio Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {projects.map((project, index) => {
-            // Define grid positioning for specific bento layout from reference
-            const getGridClass = (index: number) => {
-              switch(index) {
-                case 0: // Vitalis - Top left large
-                  return "lg:col-span-2 lg:row-span-1";
-                case 1: // MediApp - Middle right large  
-                  return "lg:col-span-2 lg:row-span-1";
-                case 2: // Endoscopy - Top right medium
-                  return "lg:col-span-1 lg:row-span-1";
-                case 3: // Dentista - Bottom left large
-                  return "lg:col-span-2 lg:row-span-1";
-                case 4: // Dra. Alma - Bottom right medium
-                  return "lg:col-span-1 lg:row-span-1";
-                case 5: // Dra. Daniela - Middle left small
-                  return "lg:col-span-1 lg:row-span-1";
-                default:
-                  return "lg:col-span-1 lg:row-span-1";
-              }
-            };
+          {/* Portfolio Projects */}
+          <div className="space-y-20 lg:space-y-32">
+            {projects.map((project, index) => {
+              const isImageLeft = index % 2 === 0;
+              
+              return (
+                <div 
+                  key={project.id} 
+                  className={`${getAnimationClass(index)} opacity-0 [animation-fill-mode:forwards]`}
+                >
+                  <Dialog>
+                    <div className={`flex flex-col ${isImageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center`}>
+                      
+                      {/* Image Section */}
+                      <div className="w-full lg:w-1/2">
+                        <DialogTrigger asChild>
+                          <div 
+                            className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+                            onClick={() => setSelectedProject(project)}
+                          >
+                            {/* Background Image */}
+                            <div className="relative aspect-[4/3]">
+                              <img 
+                                src={project.image}
+                                alt={project.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                              {/* Gradient Overlay */}
+                              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-80 group-hover:opacity-70 transition-opacity duration-300`} />
+                              
+                              {/* Content Overlay */}
+                              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-2">
+                                  {project.name}
+                                </h3>
+                                <p className="text-white/90 mb-4">
+                                  {project.type}
+                                </p>
+                                <Button 
+                                  variant="secondary" 
+                                  size="sm"
+                                  className="bg-white/20 text-white border-white/30 hover:bg-white hover:text-gray-900 w-fit"
+                                >
+                                  Ver proyecto
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </DialogTrigger>
+                      </div>
 
-            const getHeightClass = (index: number) => {
-              switch(index) {
-                case 0: // Vitalis - Large
-                  return "h-72 lg:h-60";
-                case 1: // MediApp - Large
-                  return "h-72 lg:h-60";
-                case 2: // Endoscopy - Medium
-                  return "h-72 lg:h-60";
-                case 3: // Dentista - Large
-                  return "h-72 lg:h-60";
-                case 4: // Dra. Alma - Medium
-                  return "h-72 lg:h-60";
-                case 5: // Dra. Daniela - Small
-                  return "h-72 lg:h-60";
-                default:
-                  return "h-72";
-              }
-            };
-
-            const getAnimationClass = (index: number) => {
-              // Row-based animations: Row 1 (L-R), Row 2 (R-L), Row 3 (L-R)
-              switch(index) {
-                case 0: // Vitalis - Row 1, first item
-                  return "animate-fade-in-left";
-                case 2: // Endoscopy - Row 1, second item  
-                  return "animate-fade-in-left-delay-200";
-                case 5: // Dra. Daniela - Row 2, first item
-                  return "animate-fade-in-right-delay-400";
-                case 1: // MediApp - Row 2, second item
-                  return "animate-fade-in-right-delay-600";
-                case 3: // Dentista - Row 3, first item
-                  return "animate-fade-in-left-delay-800";
-                case 4: // Dra. Alma - Row 3, second item
-                  return "animate-fade-in-left-delay-1000";
-                default:
-                  return "animate-fade-in-left";
-              }
-            };
-
-            const getOrder = (index: number) => {
-              // Reorder projects to match the reference layout
-              switch(index) {
-                case 0: return "order-1"; // Vitalis - Top left
-                case 2: return "order-2"; // Endoscopy - Top right
-                case 5: return "order-3"; // Dra. Daniela - Middle left
-                case 1: return "order-4"; // MediApp - Middle right
-                case 3: return "order-5"; // Dentista - Bottom left
-                case 4: return "order-6"; // Dra. Alma - Bottom right
-                default: return "";
-              }
-            };
-
-            const getTextSize = (index: number) => {
-              const isFeatured = index === 0 || index === 3; // Vitalis and Dentista
-              return {
-                title: isFeatured ? "text-2xl lg:text-3xl" : "text-xl",
-                type: isFeatured ? "text-base" : "text-sm",
-                padding: isFeatured ? "p-8" : "p-6"
-              };
-            };
-
-            const textStyles = getTextSize(index);
-
-            return (
-              <div key={project.id} className={`group ${getGridClass(index)} ${getOrder(index)} ${getAnimationClass(index)} opacity-0 [animation-fill-mode:forwards]`}>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <div 
-                      className={`relative bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border ${getHeightClass(index)}`}
-                      onClick={() => setSelectedProject(project)}
-                    >
-                      {/* Project Background */}
-                      <div className={`h-full bg-gradient-to-br ${project.gradient} relative`}>
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black/40" />
-                        
-                        {/* Content */}
-                        <div className={`absolute bottom-0 left-0 right-0 ${textStyles.padding} text-white`}>
-                          <h3 className={`font-sans font-bold ${textStyles.title} mb-3`}>
+                      {/* Content Section */}
+                      <div className="w-full lg:w-1/2 space-y-6">
+                        <div>
+                          <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                             {project.name}
                           </h3>
-                          <p className={`text-white/80 ${textStyles.type} mb-4`}>
+                          <p className="text-lg text-muted-foreground mb-6">
                             {project.type}
                           </p>
+                          <p className="text-foreground leading-relaxed text-lg">
+                            {project.description}
+                          </p>
+                        </div>
+                        
+                        {/* Technologies */}
+                        <div>
+                          <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-3">
+                            Tecnologías Utilizadas
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, techIndex) => (
+                              <Badge 
+                                key={techIndex}
+                                variant="secondary"
+                                className="bg-secondary text-secondary-foreground px-3 py-1"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <DialogTrigger asChild>
                           <Button 
-                            variant="secondary" 
-                            size="sm"
-                            className="bg-white/20 text-white border-white/30 hover:bg-white hover:text-gray-900"
+                            className="bg-primary text-primary-foreground hover:bg-primary/90"
+                            onClick={() => setSelectedProject(project)}
                           >
-                            Ver proyecto
+                            Ver detalles del proyecto
                           </Button>
+                        </DialogTrigger>
+                      </div>
+
+                    </div>
+
+                    {/* Modal Dialog */}
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl text-foreground">
+                          {project.name}
+                        </DialogTitle>
+                      </DialogHeader>
+                      
+                      <div className="space-y-6">
+                        {/* Project Type */}
+                        <div>
+                          <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-2">
+                            Tipo de Cliente
+                          </h4>
+                          <p className="text-foreground font-medium">
+                            {project.type}
+                          </p>
+                        </div>
+                        
+                        {/* Project Description */}
+                        <div>
+                          <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-2">
+                            Descripción
+                          </h4>
+                          <p className="text-foreground leading-relaxed">
+                            {project.description}
+                          </p>
+                        </div>
+                        
+                        {/* Technologies */}
+                        <div>
+                          <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-3">
+                            Tecnologías Utilizadas
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, techIndex) => (
+                              <Badge 
+                                key={techIndex}
+                                variant="secondary"
+                                className="bg-secondary text-secondary-foreground"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </DialogTrigger>
-                
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl text-foreground">
-                      {project.name}
-                    </DialogTitle>
-                  </DialogHeader>
-                  
-                  <div className="space-y-6">
-                    {/* Project Type */}
-                    <div>
-                      <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-2">
-                        Tipo de Cliente
-                      </h4>
-                      <p className="text-foreground font-medium">
-                        {project.type}
-                      </p>
-                    </div>
-                    
-                    {/* Project Description */}
-                    <div>
-                      <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-2">
-                        Descripción
-                      </h4>
-                      <p className="text-foreground leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-                    
-                    {/* Technologies */}
-                    <div>
-                      <h4 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider mb-3">
-                        Tecnologías Utilizadas
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, index) => (
-                          <Badge 
-                            key={index}
-                            variant="secondary"
-                            className="bg-secondary text-secondary-foreground"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
-          );
-          })}
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              );
+            })}
+          </div>
+          
         </div>
-        
-      </div>
-    </section>
+      </section>
     </>
   );
 };
