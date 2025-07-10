@@ -109,6 +109,19 @@ export default {
 						opacity: '1',
 						transform: 'translateX(0)'
 					}
+				},
+				'meteor-effect': {
+					'0%': {
+						transform: 'rotate(45deg) translateX(0) translateY(0)',
+						opacity: '1'
+					},
+					'70%': {
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'rotate(45deg) translateX(-500px) translateY(300px)',
+						opacity: '0'
+					}
 				}
 			},
 			animation: {
@@ -120,7 +133,8 @@ export default {
 				'slide-in-right-delay-400': 'slide-in-right 0.8s ease-out 0.4s',
 				'slide-in-left-delay-600': 'slide-in-left 0.8s ease-out 0.6s',
 				'slide-in-right-delay-800': 'slide-in-right 0.8s ease-out 0.8s',
-				'slide-in-left-delay-1000': 'slide-in-left 0.8s ease-out 1s'
+				'slide-in-left-delay-1000': 'slide-in-left 0.8s ease-out 1s',
+				'meteor-effect': 'meteor-effect 8s linear infinite'
 			}
 		}
 	},

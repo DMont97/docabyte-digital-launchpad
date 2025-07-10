@@ -5,6 +5,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import Benefits from '@/components/Benefits';
 import Servicios from '@/components/Servicios';
 import Portfolio from '@/components/Portfolio';
+import CTA from '@/components/CTA';
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <Servicios />
       <WhyChooseUs />
       <Portfolio />
+      <CTA />
     </div>
   );
 };
