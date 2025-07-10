@@ -79,40 +79,91 @@ const Portfolio = () => {
       <section className="py-20 lg:py-28 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <div key={project.id} className="group">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <div 
-                    className="relative bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border h-80"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    {/* Project Background */}
-                    <div className={`h-full bg-gradient-to-br ${project.gradient} relative`}>
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/40" />
-                      
-                      {/* Content */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="font-sans font-bold text-xl mb-3">
-                          {project.name}
-                        </h3>
-                        <p className="text-white/80 text-sm mb-4">
-                          {project.type}
-                        </p>
-                        <Button 
-                          variant="secondary" 
-                          size="sm"
-                          className="bg-white/20 text-white border-white/30 hover:bg-white hover:text-gray-900"
-                        >
-                          Ver proyecto
-                        </Button>
+          {/* Portfolio Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6 auto-rows-fr">
+          {projects.map((project, index) => {
+            // Define grid positioning for bento layout
+            const getGridClass = (index: number) => {
+              switch(index) {
+                case 0: // Vitalis - Large featured
+                  return "md:col-span-2 lg:col-span-3 md:row-span-2";
+                case 1: // MediApp - Medium  
+                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
+                case 2: // Endoscopy - Small
+                  return "md:col-span-2 lg:col-span-1 md:row-span-1";
+                case 3: // Dentista - Medium tall
+                  return "md:col-span-2 lg:col-span-2 md:row-span-2";
+                case 4: // Dra. Alma - Small
+                  return "md:col-span-2 lg:col-span-1 md:row-span-1";
+                case 5: // Dra. Daniela - Medium
+                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
+                default:
+                  return "md:col-span-2 lg:col-span-2 md:row-span-1";
+              }
+            };
+
+            const getHeightClass = (index: number) => {
+              switch(index) {
+                case 0: // Vitalis - Large featured
+                  return "h-80 md:h-96 lg:h-[32rem]";
+                case 1: // MediApp - Medium
+                  return "h-80 md:h-48 lg:h-60";
+                case 2: // Endoscopy - Small
+                  return "h-80 md:h-48 lg:h-60";
+                case 3: // Dentista - Medium tall
+                  return "h-80 md:h-96 lg:h-[32rem]";
+                case 4: // Dra. Alma - Small
+                  return "h-80 md:h-48 lg:h-60";
+                case 5: // Dra. Daniela - Medium
+                  return "h-80 md:h-48 lg:h-60";
+                default:
+                  return "h-80";
+              }
+            };
+
+            const getTextSize = (index: number) => {
+              const isFeatured = index === 0 || index === 3; // Vitalis and Dentista
+              return {
+                title: isFeatured ? "text-2xl lg:text-3xl" : "text-xl",
+                type: isFeatured ? "text-base" : "text-sm",
+                padding: isFeatured ? "p-8" : "p-6"
+              };
+            };
+
+            const textStyles = getTextSize(index);
+
+            return (
+              <div key={project.id} className={`group ${getGridClass(index)}`}>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div 
+                      className={`relative bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-border ${getHeightClass(index)}`}
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      {/* Project Background */}
+                      <div className={`h-full bg-gradient-to-br ${project.gradient} relative`}>
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-black/40" />
+                        
+                        {/* Content */}
+                        <div className={`absolute bottom-0 left-0 right-0 ${textStyles.padding} text-white`}>
+                          <h3 className={`font-sans font-bold ${textStyles.title} mb-3`}>
+                            {project.name}
+                          </h3>
+                          <p className={`text-white/80 ${textStyles.type} mb-4`}>
+                            {project.type}
+                          </p>
+                          <Button 
+                            variant="secondary" 
+                            size="sm"
+                            className="bg-white/20 text-white border-white/30 hover:bg-white hover:text-gray-900"
+                          >
+                            Ver proyecto
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </DialogTrigger>
+                  </DialogTrigger>
                 
                 <DialogContent className="max-w-2xl">
                   <DialogHeader>
@@ -163,7 +214,8 @@ const Portfolio = () => {
                 </DialogContent>
               </Dialog>
             </div>
-          ))}
+          );
+          })}
         </div>
         
       </div>
