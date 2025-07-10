@@ -76,17 +76,15 @@ const Portfolio = () => {
   ];
 
   const getAnimationClass = (index: number) => {
-    const isEven = index % 2 === 0;
-    const animationDirection = isEven ? 'slide-in-left' : 'slide-in-right';
-    const delayMap = {
-      0: '',
-      1: '-delay-200',
-      2: '-delay-400', 
-      3: '-delay-600',
-      4: '-delay-800',
-      5: '-delay-1000'
-    };
-    return `animate-${animationDirection}${delayMap[index as keyof typeof delayMap]}`;
+    const animationClasses = [
+      'animate-slide-in-left',           // Project 0
+      'animate-slide-in-right-delay-400', // Project 1  
+      'animate-slide-in-left-delay-600',  // Project 2
+      'animate-slide-in-right-delay-800', // Project 3
+      'animate-slide-in-left-delay-1000', // Project 4
+      'animate-slide-in-right'           // Project 5
+    ];
+    return animationClasses[index] || 'animate-slide-in-left';
   };
 
   return (
