@@ -114,8 +114,13 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in-left': 'fade-in-left 0.6s ease-out',
-				'fade-in-right': 'fade-in-right 0.6s ease-out'
+				'fade-in-left': 'fade-in-left 0.8s ease-out',
+				'fade-in-right': 'fade-in-right 0.8s ease-out',
+				'fade-in-left-delay-200': 'fade-in-left 0.8s ease-out 0.2s',
+				'fade-in-right-delay-400': 'fade-in-right 0.8s ease-out 0.4s',
+				'fade-in-right-delay-600': 'fade-in-right 0.8s ease-out 0.6s',
+				'fade-in-left-delay-800': 'fade-in-left 0.8s ease-out 0.8s',
+				'fade-in-left-delay-1000': 'fade-in-left 0.8s ease-out 1s'
 			}
 		}
 	},

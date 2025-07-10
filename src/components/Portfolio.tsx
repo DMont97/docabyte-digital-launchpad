@@ -125,17 +125,17 @@ const Portfolio = () => {
               // Row-based animations: Row 1 (L-R), Row 2 (R-L), Row 3 (L-R)
               switch(index) {
                 case 0: // Vitalis - Row 1, first item
-                  return "animate-fade-in-left [animation-delay:0ms]";
+                  return "animate-fade-in-left";
                 case 2: // Endoscopy - Row 1, second item  
-                  return "animate-fade-in-left [animation-delay:200ms]";
+                  return "animate-fade-in-left-delay-200";
                 case 5: // Dra. Daniela - Row 2, first item
-                  return "animate-fade-in-right [animation-delay:400ms]";
+                  return "animate-fade-in-right-delay-400";
                 case 1: // MediApp - Row 2, second item
-                  return "animate-fade-in-right [animation-delay:600ms]";
+                  return "animate-fade-in-right-delay-600";
                 case 3: // Dentista - Row 3, first item
-                  return "animate-fade-in-left [animation-delay:800ms]";
+                  return "animate-fade-in-left-delay-800";
                 case 4: // Dra. Alma - Row 3, second item
-                  return "animate-fade-in-left [animation-delay:1000ms]";
+                  return "animate-fade-in-left-delay-1000";
                 default:
                   return "animate-fade-in-left";
               }
