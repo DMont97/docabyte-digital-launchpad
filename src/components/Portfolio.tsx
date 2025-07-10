@@ -105,19 +105,39 @@ const Portfolio = () => {
             const getHeightClass = (index: number) => {
               switch(index) {
                 case 0: // Vitalis - Large
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 case 1: // MediApp - Large
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 case 2: // Endoscopy - Medium
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 case 3: // Dentista - Large
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 case 4: // Dra. Alma - Medium
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 case 5: // Dra. Daniela - Small
-                  return "h-64 lg:h-48";
+                  return "h-72 lg:h-60";
                 default:
-                  return "h-64";
+                  return "h-72";
+              }
+            };
+
+            const getAnimationClass = (index: number) => {
+              // Row-based animations: Row 1 (L-R), Row 2 (R-L), Row 3 (L-R)
+              switch(index) {
+                case 0: // Vitalis - Row 1, first item
+                  return "animate-fade-in-left [animation-delay:0ms]";
+                case 2: // Endoscopy - Row 1, second item  
+                  return "animate-fade-in-left [animation-delay:200ms]";
+                case 5: // Dra. Daniela - Row 2, first item
+                  return "animate-fade-in-right [animation-delay:400ms]";
+                case 1: // MediApp - Row 2, second item
+                  return "animate-fade-in-right [animation-delay:600ms]";
+                case 3: // Dentista - Row 3, first item
+                  return "animate-fade-in-left [animation-delay:800ms]";
+                case 4: // Dra. Alma - Row 3, second item
+                  return "animate-fade-in-left [animation-delay:1000ms]";
+                default:
+                  return "animate-fade-in-left";
               }
             };
 
@@ -146,7 +166,7 @@ const Portfolio = () => {
             const textStyles = getTextSize(index);
 
             return (
-              <div key={project.id} className={`group ${getGridClass(index)} ${getOrder(index)}`}>
+              <div key={project.id} className={`group ${getGridClass(index)} ${getOrder(index)} ${getAnimationClass(index)} opacity-0 [animation-fill-mode:forwards]`}>
                 <Dialog>
                   <DialogTrigger asChild>
                     <div 
