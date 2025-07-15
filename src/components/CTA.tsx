@@ -1,66 +1,46 @@
-import { motion } from "framer-motion";
-import { Meteors } from "@/components/ui/meteors";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import mockup from "../assets/mockup.png";
+import bgGradient from "../assets/bg-gradient.png";
 
 const CTA = () => {
   return (
-    <section className="py-20 px-4 bg-background">
-      <div className="container mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2B65D9] to-[#66C7F4] p-16 md:p-20 shadow-2xl"
+    <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10 px-8 pt-16 pb-16">
+      {/* Texto */}
+      <div className="flex-1 flex flex-col justify-center">
+        <h2 className="text-white font-extrabold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-left">
+          La salud digital no es el futuro. Es el presente.
+        </h2>
+        <p className="text-blue-100 text-lg mb-8 max-w-xl text-left">
+          Da el siguiente paso en la transformación de tu clínica o consultorio.
+        </p>
+        <a
+          href="#"
+          className="bg-white text-blue-700 font-bold px-8 py-3 rounded-xl text-lg shadow-none hover:bg-blue-50 transition w-auto"
+          style={{ minWidth: 0, maxWidth: "fit-content" }}
         >
-          {/* Meteor Effect Overlay */}
-          <div className="absolute inset-0 overflow-hidden">
-            <Meteors number={25} className="opacity-90" />
-          </div>
-          
-          {/* Content */}
-          <div className="relative z-10 text-center text-white">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-8 leading-tight"
-            >
-              La salud digital no es el futuro. Es el presente.
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="text-2xl md:text-3xl mb-12 text-white/95 max-w-4xl mx-auto leading-relaxed font-medium"
-            >
-              Da el siguiente paso en la transformación de tu clínica o consultorio.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Button
-                size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-bold px-12 py-8 text-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-white/20"
-              >
-                Agendar Llamada
-              </Button>
-            </motion.div>
-          </div>
-          
-          {/* Decorative Elements */}
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-        </motion.div>
+          Agendar llamada
+        </a>
       </div>
-    </section>
+      {/* Mockup sobresaliente */}
+      <div className="flex-1 flex justify-center md:justify-end relative">
+        <img
+          src={mockup}
+          alt="Mockup Vitalis"
+          className="w-[340px] md:w-[420px] lg:w-[480px] relative z-20"
+          style={{
+            maxWidth: "100%",
+            boxShadow: "none",
+            position: "absolute",
+            top: "-140px",
+            right: 0,
+            background: "none",
+            height: "auto",
+            objectFit: "contain",
+          }}
+          draggable={false}
+        />
+      </div>
+    </div>
   );
 };
 

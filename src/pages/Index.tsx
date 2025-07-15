@@ -7,6 +7,8 @@ import Servicios from '@/components/Servicios';
 import Portfolio from '@/components/Portfolio';
 import Testimonials from '@/components/Testimonials';
 import CTA from '@/components/CTA';
+import Footer from '@/components/Footer';
+import bgGradient from '@/assets/bg-gradient.png';
 
 const Index = () => {
   return (
@@ -18,7 +20,18 @@ const Index = () => {
       <WhyChooseUs />
       <Portfolio />
       <Testimonials />
-      <CTA />
+      {/* CONTENEDOR CON FONDO */}
+      <section
+        style={{
+          backgroundImage: `url(${bgGradient})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="rounded-t-[48px] overflow-visible"
+      >
+        <CTA />
+        <Footer />
+      </section>
     </div>
   );
 };

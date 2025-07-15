@@ -1,11 +1,27 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Handshake } from 'lucide-react';
-import SectionHeader from '@/components/ui/SectionHeader';
+"use client";
+
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import { Handshake } from "lucide-react";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const testimonials = [
   {
-    quote: "Docabyte transformó la manera en que gestiono mi clínica.",
+    quote: "El equipo de Docabyte entendió mis necesidades y las resolvió con tecnología simple pero poderosa.",
+    name: "Dra. Sofía Peña",
+    title: "Ginecóloga",
+    image: "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+  {
+    quote: "Desde que tengo mi plataforma con Docabyte, he ganado más visibilidad y pacientes.",
+    name: "Dr. Mauricio Torres",
+    title: "Cardiólogo",
+    image: "https://randomuser.me/api/portraits/men/61.jpg"
+  },
+  {
+    quote: "Docabyte transformó la manera en la que gestiono mi clínica y atiendo a mis pacientes.",
     name: "Dra. Laura Méndez",
     title: "Odontóloga General",
     image: "https://randomuser.me/api/portraits/women/44.jpg"
@@ -22,106 +38,56 @@ const testimonials = [
     title: "Dermatóloga",
     image: "https://randomuser.me/api/portraits/women/68.jpg"
   },
-  {
-    quote: "El sistema de recordatorios automáticos nos ha ayudado a reducir inasistencias.",
-    name: "Dr. Carlos Ibáñez",
-    title: "Clínica Integral de Especialidades",
-    image: "https://randomuser.me/api/portraits/men/45.jpg"
-  },
-  {
-    quote: "El equipo de Docabyte entendió mis necesidades y las resolvió con tecnología simple pero poderosa.",
-    name: "Dra. Sofía Peña",
-    title: "Ginecóloga",
-    image: "https://randomuser.me/api/portraits/women/21.jpg"
-  },
-  {
-    quote: "Desde que tengo mi plataforma con Docabyte, he ganado más visibilidad y pacientes.",
-    name: "Dr. Mauricio Torres",
-    title: "Cardiólogo",
-    image: "https://randomuser.me/api/portraits/men/61.jpg"
-  }
 ];
 
-// Duplicate testimonials for seamless infinite scroll
-const duplicatedTestimonials = [...testimonials, ...testimonials];
-
-const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-  <div className="flex-shrink-0 w-80 md:w-96 mx-4">
-    <div className="bg-gradient-to-br from-[#F0F7FF] to-[#E4ECFB] border border-[#D4D4D8] rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 h-full">
-      {/* Quote */}
-      <blockquote className="text-slate-700 font-medium text-lg mb-6 leading-relaxed">
-        "{testimonial.quote}"
-      </blockquote>
-      
-      {/* Doctor Info */}
-      <div className="flex items-center gap-4">
-        <img
-          src={testimonial.image}
-          alt={testimonial.name}
-          className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
-        />
-        <div>
-          <h4 className="font-semibold text-slate-800 text-base">
-            {testimonial.name}
-          </h4>
-          <p className="text-slate-600 text-sm">
-            {testimonial.title}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const Testimonials = () => {
+export default function Testimonials() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background to-blue-50/30">
-      <div className="container mx-auto">
-        {/* Section Header */}
-        <SectionHeader
-          smallTitle="TESTIMONIOS DE NUESTROS CLIENTES"
-          mainTitle="Lo que dicen los profesionales de salud sobre Docabyte"
-          icon={Handshake}
-          className="mb-16"
-        />
-        
-        {/* Infinite Scrolling Testimonials */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex"
-            animate={{
-              x: [0, -100 * testimonials.length + "%"]
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 60, // Slow and smooth
-                ease: "linear",
-              },
-            }}
-            whileHover={{
-              animationPlayState: "paused"
-            }}
-            style={{
-              width: `${duplicatedTestimonials.length * 400}px`
-            }}
-          >
-            {duplicatedTestimonials.map((testimonial, index) => (
-              <TestimonialCard 
-                key={`${testimonial.name}-${index}`}
-                testimonial={testimonial} 
-              />
-            ))}
-          </motion.div>
+    <section className="py-20 bg-white dark:bg-black mt-20 mb-24">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header exacto */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Handshake className="w-5 h-5 text-cyan-600" strokeWidth={2} />
+            <span className="font-inter font-semibold text-sm uppercase tracking-wider text-cyan-600">
+              Testimonios de nuestros clientes
+            </span>
+          </div>
+          <h2 className="font-heading font-bold text-[32px] sm:text-[48px] lg:text-[60px] leading-tight">
+            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Lo que dicen los profesionales de salud<br />sobre Docabyte
+            </span>
+          </h2>
         </div>
-        
-        {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+        {/* Slider restaurado */}
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          loop
+          spaceBetween={32}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            1024: { slidesPerView: 2 },
+            1280: { slidesPerView: 3 },
+          }}
+          speed={1200}
+        >
+          {testimonials.map((t, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="bg-blue-50 rounded-2xl shadow-md p-8 flex flex-col h-full justify-between border border-blue-100 mx-2">
+                <p className="text-lg text-gray-800 mb-6 font-medium">"{t.quote}"</p>
+                <div className="flex items-center gap-4 mt-auto">
+                  <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow" />
+                  <div>
+                    <div className="font-semibold text-blue-900">{t.name}</div>
+                    <div className="text-sm text-gray-500">{t.title}</div>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}
