@@ -1,4 +1,5 @@
 
+// TODO: Remove this comment after deployment
 import React from 'react';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { openWhatsApp } from '@/lib/utils';

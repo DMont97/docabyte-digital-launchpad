@@ -1,3 +1,4 @@
+// TODO: Remove this comment after deployment
 import React, { useEffect, useRef } from 'react';
 import { Heart, Laptop, BadgeCheck, Users } from 'lucide-react';
 import { gsap } from 'gsap';

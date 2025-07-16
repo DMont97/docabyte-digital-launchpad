@@ -1,3 +1,4 @@
+// TODO: Remove this comment after deployment
 import React from "react";
 import bgGradient from "../assets/bg-gradient.png";
 import docabyteLogo from "../assets/docabyteLogo.png";

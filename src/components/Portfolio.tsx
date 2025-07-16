@@ -1,3 +1,4 @@
+// TODO: Remove this comment after deployment
 import React from 'react';
 import PortfolioScrollDemo from '@/components/ui/portfolio-scroll-demo';
 import { ProjectCard } from "./ProjectCard";
