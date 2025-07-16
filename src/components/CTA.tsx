@@ -1,10 +1,11 @@
 import React from "react";
 import mockup from "../assets/mockup.png";
 import bgGradient from "../assets/bg-gradient.png";
+import { openWhatsApp } from '@/lib/utils';
 
 const CTA = () => {
   return (
-    <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10 px-8 pt-16 pb-16">
+    <div id="contacto" className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-10 px-8 pt-16 pb-16">
       {/* Texto */}
       <div className="flex-1 flex flex-col justify-center">
         <h2 className="text-white font-extrabold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-left">
@@ -17,8 +18,9 @@ const CTA = () => {
           href="#"
           className="bg-white text-blue-700 font-bold px-8 py-3 rounded-xl text-lg shadow-none hover:bg-blue-50 transition w-auto"
           style={{ minWidth: 0, maxWidth: "fit-content" }}
+          onClick={e => { e.preventDefault(); openWhatsApp(); }}
         >
-          Agendar llamada
+          Contáctanos
         </a>
       </div>
       {/* Mockup sobresaliente */}

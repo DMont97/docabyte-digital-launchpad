@@ -9,7 +9,7 @@ import dentistaImg from "../assets/dentista.png.png";
 import vitalisImg from "../assets/vitalis.png.png";
 import endoscopyImg from "../assets/endoscopy-morelia.png.png";
 import mediappImg from "../assets/mediapp.png.png";
-import AppleCardsCarouselDemo from "./apple-cards-carousel-demo";
+// import AppleCardsCarouselDemo from "./apple-cards-carousel-demo";
 
 const projects = [
   {
@@ -61,7 +61,7 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section className="py-10">
+    <section id="proyectos" className="py-10">
       {/* Encabezado y animación original */}
       <PortfolioScrollDemo />
 
@@ -73,7 +73,7 @@ export default function Portfolio() {
       </div>
 
       {/* Carousel Apple Cards Demo debajo de las cards */}
-      <AppleCardsCarouselDemo />
+      {/* <AppleCardsCarouselDemo /> */}
     </section>
   );
 }

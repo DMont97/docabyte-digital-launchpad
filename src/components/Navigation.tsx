@@ -1,9 +1,24 @@
 
 import React from 'react';
 import useScroll from '@/hooks/use-scroll';
+import { openWhatsApp } from '@/lib/utils';
 
 const Navigation = () => {
   const isScrolled = useScroll(50);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Ajuste para el header fijo
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
@@ -19,27 +34,44 @@ const Navigation = () => {
             {/* Logo placeholder */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="w-32 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md flex items-center justify-center">
+                <a 
+                  href="https://www.docabyte.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-32 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md flex items-center justify-center hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 cursor-pointer"
+                >
                   <span className="text-white font-bold text-sm">DOCABYTE</span>
-                </div>
+                </a>
               </div>
             </div>
 
             {/* Navigation links */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#inicio" className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                <button 
+                  onClick={() => scrollToSection('inicio')} 
+                  className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
                   Inicio
-                </a>
-                <a href="#nosotros" className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('nosotros')} 
+                  className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
                   Nosotros
-                </a>
-                <a href="#servicios" className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('servicios')} 
+                  className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
                   Servicios
-                </a>
-                <a href="#proyectos" className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('proyectos')} 
+                  className="text-gray-700 hover:text-cyan-600 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                >
                   Proyectos
-                </a>
+                </button>
               </div>
             </div>
 
@@ -50,7 +82,10 @@ const Navigation = () => {
                 <span>|</span>
                 <span className="hover:text-cyan-600 cursor-pointer transition-colors duration-200">EN</span>
               </div>
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
+              <button 
+                onClick={openWhatsApp}
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-300 hover:from-cyan-600 hover:to-blue-600"
+              >
                 Contáctanos
               </button>
             </div>

@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
   }, []);
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 relative overflow-hidden">
+    <section id="nosotros" className="py-20 lg:py-28 bg-gradient-to-br from-slate-50 via-cyan-50/30 to-teal-50/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

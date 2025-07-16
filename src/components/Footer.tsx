@@ -1,7 +1,8 @@
 import React from "react";
 import bgGradient from "../assets/bg-gradient.png";
 import docabyteLogo from "../assets/docabyteLogo.png";
-import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
+import { FaFacebookF, FaWhatsapp, FaInstagram, FaGlobe } from "react-icons/fa6";
+import { openWhatsApp } from '@/lib/utils';
 
 const Footer = () => {
   return (
@@ -11,7 +12,14 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-8">
         {/* Logo solo imagen */}
         <div className="flex items-center">
-          <img src={docabyteLogo} alt="Docabyte Logo" className="h-12" />
+          <a 
+            href="https://www.docabyte.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity duration-300 cursor-pointer"
+          >
+            <img src={docabyteLogo} alt="Docabyte Logo" className="h-12" />
+          </a>
         </div>
         {/* Navegación centrada */}
         <nav className="flex gap-8 text-white text-lg font-medium justify-center flex-1">
@@ -22,17 +30,17 @@ const Footer = () => {
         </nav>
         {/* Redes sociales a la derecha */}
         <div className="flex gap-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
+          <a href="https://www.facebook.com/people/Docabyte/61567687509169/?_rdr" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
             <FaFacebookF size={20} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
-            <FaXTwitter size={20} />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
+          <button onClick={openWhatsApp} className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
+            <FaWhatsapp size={20} />
+          </button>
+          <a href="https://www.instagram.com/docabyte/" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
             <FaInstagram size={20} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
-            <FaLinkedinIn size={20} />
+          <a href="https://www.docabyte.com/" target="_blank" rel="noopener noreferrer" className="bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg p-2 transition">
+            <FaGlobe size={20} />
           </a>
         </div>
       </div>
